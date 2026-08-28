@@ -1,5 +1,5 @@
 # Discord Quest Launcher
-                    ![Downloads](https://img.shields.io/github/downloads/NekoPoint/QuestLauncher/total)
+  ![Downloads](https://img.shields.io/github/downloads/NekoPoint/QuestLauncher/total)
 
 Прога для быстрого выполнения квестов в Discord без скачивания игр по 100 ГБ.
 
