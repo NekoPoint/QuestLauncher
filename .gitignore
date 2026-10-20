@@ -1,0 +1,13 @@
+/dist/
+/review-ui/
+/bin/
+/obj/
+*.exe
+launcher.cfg*
+QuestLauncher.library*
+QuestLauncher.log*
+*.qlbak
+*.qltmp
+*.displaced-*.bak
+*.user
+*.suo

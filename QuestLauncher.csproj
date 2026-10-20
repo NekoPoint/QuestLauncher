@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <EmbeddedResource Include="assets\lucide\*.png"><LogicalName>Icons.%(Filename)%(Extension)</LogicalName></EmbeddedResource>
+    <EmbeddedResource Include="assets\lucide\LICENSE.txt"><LogicalName>Lucide.LICENSE.txt</LogicalName></EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A647B34-2E20-49A1-A807-5682D04E1400}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MinimalQuestLauncher</RootNamespace>
+    <AssemblyName>QuestLauncher</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <LangVersion>5</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>dist\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>dist\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\AssemblyInfo.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\Core\AppInfo.cs" />
+    <Compile Include="src\Core\CopyIdentity.cs" />
+    <Compile Include="src\Core\CopyService.cs" />
+    <Compile Include="src\Core\FileOps.cs" />
+    <Compile Include="src\Core\Library.cs" />
+    <Compile Include="src\Core\PathResolver.cs" />
+    <Compile Include="src\Core\ProcessTools.cs" />
+    <Compile Include="src\Core\Settings.cs" />
+    <Compile Include="src\Core\Storage.cs" />
+    <Compile Include="src\Core\UpdateChecker.cs" />
+    <Compile Include="src\UI\Controls.cs" />
+    <Compile Include="src\UI\DummyForm.cs" />
+    <Compile Include="src\UI\ImportDialog.cs" />
+    <Compile Include="src\UI\LauncherForm.cs" />
+    <Compile Include="src\UI\ThemeAndIcons.cs" />
+    <Compile Include="src\UI\WinApi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="assets\lucide\*.png"><LogicalName>Icons.%(Filename)%(Extension)</LogicalName></EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

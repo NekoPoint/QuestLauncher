@@ -1,0 +1,3 @@
+Lucide icons: https://github.com/lucide-icons/lucide
+Commit: c29c276f16590cf017126671535ad8c792be64d8
+SVG sources retained; rendered monochrome at 96px for embedded WinForms assets.

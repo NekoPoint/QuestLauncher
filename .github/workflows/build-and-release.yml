@@ -1,0 +1,38 @@
+name: Build and verify
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and test
+        shell: powershell
+        run: .\build.ps1
+      - name: Package
+        shell: powershell
+        run: |
+          Compress-Archive -LiteralPath dist/QuestLauncher.exe, LUCIDE-LICENSE.txt, LICENSE, README.md -DestinationPath dist/QuestLauncher-1.4.0.zip
+          $files = @('dist/QuestLauncher.exe', 'dist/QuestLauncher-1.4.0.zip')
+          $sums = $files | ForEach-Object {
+            $hash = (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $(Split-Path -Leaf $_)"
+          }
+          $sums | Set-Content -LiteralPath dist/RELEASE-SHA256SUMS.txt -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuestLauncher-1.4.0
+          path: |
+            dist/QuestLauncher.exe
+            dist/QuestLauncher-1.4.0.zip
+            dist/RELEASE-SHA256SUMS.txt
