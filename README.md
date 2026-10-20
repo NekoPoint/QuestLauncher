@@ -1,71 +1,87 @@
-Quest Launcher
+# Quest Launcher
 
-Небольшой Windows-лаунчер для выполнения игровых Discord Quests без скачивания самих игр.
+Лаунчер для игровых Discord Quests без необходимости скачивать сами игры.
 
-Необязательно устанавливать игру на десятки гигабайт ради одного задания. Quest Launcher позволяет создавать и запускать EXE-копии с нужными именами, которые Discord в некоторых случаях может распознать как запущенную игру.
+Некоторые квесты Discord требуют запустить определённую игру. Скачивать ради этого десятки гигабайт не всегда хочется. Quest Launcher создаёт и запускает EXE-копии с выбранными именами, которые Discord в отдельных случаях может определить как игру.
 
-""Downloads" (https://img.shields.io/github/downloads/NekoPoint/QuestLauncher/total?style=flat-square&color=blue&label=Downloads)" (https://github.com/NekoPoint/QuestLauncher/releases)
-""Latest Release" (https://img.shields.io/github/v/release/NekoPoint/QuestLauncher?style=flat-square&label=Release)" (https://github.com/NekoPoint/QuestLauncher/releases/latest)
-"Windows" (https://img.shields.io/badge/Windows-10%20%2F%2011-blue?style=flat-square)
-"License" (https://img.shields.io/badge/License-MIT-green?style=flat-square)
+[![Downloads](https://img.shields.io/github/downloads/NekoPoint/QuestLauncher/total?style=flat-square&color=blue&label=Downloads)](https://github.com/NekoPoint/QuestLauncher/releases)
+[![Latest Release](https://img.shields.io/github/v/release/NekoPoint/QuestLauncher?style=flat-square&label=Release)](https://github.com/NekoPoint/QuestLauncher/releases/latest)
+![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-blue?style=flat-square)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-Скачать
+## Скачать
 
-Актуальная версия доступна на странице "последнего релиза" (https://github.com/NekoPoint/QuestLauncher/releases/latest).
+Скачайте архив из [последнего релиза](https://github.com/NekoPoint/QuestLauncher/releases/latest), распакуйте его в папку с правами на запись и запустите `QuestLauncher.exe`.
 
-Скачайте архив с лаунчером, распакуйте его в отдельную папку и запустите "QuestLauncher.exe". Установка не требуется.
+Установка не требуется.
 
-Использование
+## Как пользоваться
 
-1. Откройте Discord и найдите квест, связанный с запуском игры.
-2. Укажите в Quest Launcher имя исполняемого файла нужной игры, например "Endfield.exe".
-3. Выберите папку и нажмите «Создать и запустить».
-4. Проверьте прогресс квеста в Discord.
+1. Найдите в Discord квест, связанный с запуском игры.
+2. Укажите имя исполняемого файла игры, например `Endfield.exe`.
+3. Выберите папку назначения и нажмите **«Создать и запустить»**.
+4. Проверьте прогресс квеста непосредственно в Discord.
 
-Созданные файлы автоматически добавляются в библиотеку и доступны для повторного запуска.
+Созданные копии сохраняются в библиотеке лаунчера и доступны для повторного запуска.
 
-Обратите внимание: Quest Launcher не гарантирует выполнение всех квестов. Результат зависит от того, как Discord распознаёт запущенные игры. Секундомер в лаунчере показывает время работы процесса, а не подтверждённый прогресс задания.
+> **Важно:** Quest Launcher не запускает оригинальную игру и не гарантирует выполнение квестов. Учитывает ли Discord запущенный процесс, зависит от конкретного задания и механизма распознавания игр. Секундомер лаунчера показывает только время работы процесса.
 
-Возможности
+## Возможности
 
-- Создание и запуск EXE-копий под выбранным именем.
-- Работа без установки оригинальных игр.
-- Библиотека созданных файлов.
-- Поиск, фильтры и избранное.
-- Импорт существующих копий.
-- Обновление отдельных файлов и всей библиотеки.
-- Отслеживание времени работы процессов.
+- Создание и запуск EXE-копий с выбранными именами.
+- Библиотека копий, поиск, фильтры и избранное.
+- Импорт уже созданных файлов.
+- Обновление отдельных копий или всей библиотеки.
+- Просмотр времени работы запущенного процесса.
 - Портативный запуск без установки.
 
-Требования
+В меню **«…»** доступны запуск, обновление, добавление в избранное, открытие папки, копирование пути и удаление.
 
-- Windows 10/11
-- .NET Framework 4.8
+При выборе **«Обновить все»** обрабатывается вся библиотека, включая записи, скрытые фильтрами. Занятые, изменённые, отсутствующие и неподтверждённые файлы автоматически не обновляются.
 
-Обновление
+## Требования
 
-Скачайте актуальную сборку из "Releases" (https://github.com/NekoPoint/QuestLauncher/releases).
+- Windows 10 или 11.
+- .NET Framework 4.8.
 
-Перед заменой файлов закройте лаунчер и запущенные копии. Сохраните "launcher.cfg", "QuestLauncher.library" и папки с созданными файлами.
+.NET SDK для запуска не нужен.
 
-Если обновление было прервано, не удаляйте файлы ".qlbak" до завершения восстановления.
+## Обновление
 
-Сборка из исходников
+1. Закройте лаунчер и запущенные копии.
+2. Скачайте новую сборку из [Releases](https://github.com/NekoPoint/QuestLauncher/releases).
+3. Замените основной EXE, сохранив `launcher.cfg`, `QuestLauncher.library` и папки копий.
 
+Старые копии можно импортировать и обновить через **«…» → «Обновить все»**.
+
+Если обновление прервалось, сохраните файлы `.qlbak` для восстановления.
+
+## Сборка из исходников
+
+```powershell
 powershell -ExecutionPolicy Bypass -File .\build.ps1
+```
 
-Требуется компилятор .NET Framework 4.x ("csc.exe").
+Для сборки нужен компилятор .NET Framework 4.x (`csc.exe`). Скрипт собирает приложение и тестовый раннер, запускает проверки и создаёт контрольные суммы. Результат сохраняется в `dist/`.
 
-Скрипт собирает приложение, выполняет предусмотренные проектом проверки и сохраняет результат в "dist/".
+Параметр `-SkipTests` пропускает проверки. Обычная сборка не подписана Windows Authenticode.
 
-Для пропуска проверок используйте "-SkipTests".
+## Структура проекта
 
-Лицензия
+```text
+src/                    Исходный код
+tests/                  Тесты
+assets/lucide/          Иконки и ресурсы
+.github/workflows/      CI
+QuestLauncher.csproj    Проект .NET Framework
+build.ps1               Скрипт сборки
+CHANGELOG.md            История изменений
+```
 
-Quest Launcher распространяется под лицензией "MIT" (LICENSE).
+Настройки, библиотека и журнал хранятся рядом с EXE, а если папка недоступна для записи — в `%LOCALAPPDATA%\QuestLauncher`.
 
-Иконки взяты из "Lucide" (https://github.com/lucide-icons/lucide). Условия их использования приведены в "LUCIDE-LICENSE.txt" (LUCIDE-LICENSE.txt).
+## Лицензия
 
----
+Проект распространяется по лицензии [MIT](LICENSE). Автор — **vaelit**.
 
-Разработчик: vaelit
+Иконки — [Lucide](https://github.com/lucide-icons/lucide). Условия лицензирования указаны в [LUCIDE-LICENSE.txt](LUCIDE-LICENSE.txt).
