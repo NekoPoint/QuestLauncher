@@ -1256,10 +1256,18 @@ namespace MinimalQuestLauncher
                     lf.ApplyLayout(dpi);
                     Application.DoEvents();
                     float scale = dpi / 96f;
-                    Assert(lf.ClientSize.Width == (int)Math.Round(900 * scale),
-                           "LauncherForm width at DPI " + dpi + " mismatch");
-                    Assert(lf.ClientSize.Height == (int)Math.Round(520 * scale),
-                           "LauncherForm height at DPI " + dpi + " mismatch");
+                    Size maxTrack = SystemInformation.MaxWindowTrackSize;
+                    int expectedWidth = Math.Min((int)Math.Round(900 * scale), maxTrack.Width);
+                    int expectedHeight = Math.Min((int)Math.Round(520 * scale), maxTrack.Height);
+                    Assert(lf.ClientSize.Width == expectedWidth,
+                           "LauncherForm width at DPI " + dpi + ": expected " + expectedWidth + ", got " + lf.ClientSize.Width);
+                    Assert(lf.ClientSize.Height == expectedHeight,
+                           "LauncherForm height at DPI " + dpi + ": expected " + expectedHeight + ", got " + lf.ClientSize.Height);
+                    var layoutFlags = BindingFlags.NonPublic | BindingFlags.Instance;
+                    var gameInput = (AnimatedInputBox)typeof(LauncherForm).GetField("_inputGame",layoutFlags).GetValue(lf);
+                    var libraryTitle = (Control)typeof(LauncherForm).GetField("_lblRightTitle",layoutFlags).GetValue(lf);
+                    Assert(gameInput.Width == (int)Math.Round(296 * scale) && libraryTitle.Left == (int)Math.Round(388 * scale),
+                           "Content geometry must retain the requested DPI scale even on a smaller desktop");
 
                     using (var bmp = new System.Drawing.Bitmap(lf.Width, lf.Height))
                     {
@@ -1366,9 +1374,9 @@ namespace MinimalQuestLauncher
                 {
                     df.ApplyLayout(dpi);
                     float scale = dpi / 96f;
-                    Assert(df.ClientSize.Width == (int)Math.Round(480 * scale),
+                    Assert(df.ClientSize.Width == Math.Min((int)Math.Round(480 * scale),SystemInformation.MaxWindowTrackSize.Width),
                            "DummyForm width at DPI " + dpi + " mismatch");
-                    Assert(df.ClientSize.Height == (int)Math.Round(250 * scale),
+                    Assert(df.ClientSize.Height == Math.Min((int)Math.Round(250 * scale),SystemInformation.MaxWindowTrackSize.Height),
                            "DummyForm height at DPI " + dpi + " mismatch");
 
                     using (var bmp = new System.Drawing.Bitmap(df.Width, df.Height))
