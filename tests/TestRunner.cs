@@ -1213,6 +1213,7 @@ namespace MinimalQuestLauncher
             Directory.CreateDirectory(DataPaths.OverrideDir);
             using (var empty = new LauncherForm(_builtExe))
             {
+                empty.MaximumSize = new Size(4096, 4096);
                 empty.ShowInTaskbar = false;
                 empty.Show();
                 empty.Opacity = 1;
@@ -1245,6 +1246,7 @@ namespace MinimalQuestLauncher
 
             using (var lf = new LauncherForm(_builtExe))
             {
+                lf.MaximumSize = new Size(4096, 4096);
                 lf.ShowInTaskbar = false;
                 lf.Show();
                 lf.Opacity = 1.0;
@@ -1357,6 +1359,7 @@ namespace MinimalQuestLauncher
             DataPaths.OverrideDir = previousDataDir;
             using (var df = new DummyForm())
             {
+                df.MaximumSize = new Size(4096, 4096);
                 df.Opacity = 1.0;
                 df.CreateControl();
                 foreach (int dpi in new[] { 96, 144, 192 })
