@@ -484,12 +484,16 @@ namespace MinimalQuestLauncher
             }
             else if (!string.IsNullOrEmpty(Text))
             {
-                using (var sf = new StringFormat {
-                    Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center,
-                    Trimming = StringTrimming.EllipsisCharacter, FormatFlags = StringFormatFlags.NoWrap
-                }) using (var textBrush = new SolidBrush(fg))
+                try
                 {
-                    g.DrawString(Text, Font, textBrush, new RectangleF(4, 0, Math.Max(4, Width - 8), Height), sf);
+                    TextRenderer.DrawText(
+                        g, Text, Font,
+                        new Rectangle(4, 0, Math.Max(4, Width - 8), Height), fg,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter |
+                            TextFormatFlags.EndEllipsis | TextFormatFlags.SingleLine | TextFormatFlags.NoPrefix);
+                }
+                catch
+                {
                 }
             }
         }

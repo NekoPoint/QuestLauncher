@@ -59,7 +59,8 @@ namespace MinimalQuestLauncher
             KeyPreview = true;
 
             _gameName = ResolveCurrentExeName();
-            Text = "Discord Quest — " + _gameName;
+            string cleanTitle = Path.GetFileNameWithoutExtension(_gameName);
+            Text = !string.IsNullOrEmpty(cleanTitle) ? cleanTitle : _gameName;
             AccessibleName = Text;
 
             _titleFont = new Font("Segoe UI", 9f, FontStyle.Bold);
@@ -307,8 +308,11 @@ namespace MinimalQuestLauncher
             g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
 
             LucideIcons.Draw(g, "gamepad-2", new Rectangle(S(20), S(10), S(18), S(18)), Theme.TextMuted);
-            TextRenderer.DrawText(g, "Quest Launcher", _titleFont, new Rectangle(S(46), S(8), S(280), S(24)),
-                                  Theme.TextNormal, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+            string headerTitle = Path.GetFileNameWithoutExtension(_gameName);
+            if (string.IsNullOrEmpty(headerTitle))
+                headerTitle = _gameName;
+            TextRenderer.DrawText(g, headerTitle, _titleFont, new Rectangle(S(46), S(8), S(280), S(24)),
+                                  Theme.TextNormal, TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
             LucideIcons.Draw(g, "minus", Rectangle.Inflate(_minRect, -S(6), -S(4)),
                              _isMinHovered ? Color.White : Theme.TextMuted);
             LucideIcons.Draw(g, "x", Rectangle.Inflate(_closeRect, -S(6), -S(4)),
@@ -328,12 +332,9 @@ namespace MinimalQuestLauncher
             TextRenderer.DrawText(g, "Время работы процесса", _noteFont, new Rectangle(S(254), S(127), S(188), S(20)),
                                   Theme.TextMuted, TextFormatFlags.Right);
             TextRenderer.DrawText(g,
-                                  "Не закрывайте окно до завершения квеста.\nТаймер не показывает прогресс в Discord.",
+                                  "Приложение выполняется в фоновом режиме.\nНе сворачивайте окно во время трансляции.",
                                   _noteFont, new Rectangle(S(32), S(171), Width - S(64), S(38)), Theme.TextMuted,
                                   TextFormatFlags.Left | TextFormatFlags.WordBreak);
-            TextRenderer.DrawText(g, "v" + AppInfo.Version + "  •  vaelit", _noteFont,
-                                  new Rectangle(S(24), Height - S(26), Width - S(48), S(18)), Theme.TextMuted,
-                                  TextFormatFlags.Right);
 
             var borderRect = new RectangleF(0.5f, 0.5f, Width - 1f, Height - 1f);
             using (var path = WinApi.CreateRoundRect(borderRect, S(7))) using (var borderPen =
